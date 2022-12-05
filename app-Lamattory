@@ -1,0 +1,26 @@
+from requests import get 
+from bs4 import BeautifulSoup
+from warnings import warn
+from time import sleep
+from random import randint
+import numpy as np, pandas as pd
+import seaborn as plt
+
+from flask import Flask,jsonify,render_template
+
+app = Flask(__name__)
+
+@app.route('/')
+def pagina_inicial():
+  return'primeira pagina'
+
+@app.route('/login/')
+def login():
+  return'aqui vc faz o login'
+  
+@app.route('/total/')
+def total():
+  tabela = pd.read_csv('base.csv')
+  total_vendas = tabela['Vendas'].sum()
+  respostas = {'Total Vendas:':total_vendas}
+  return jsonify(resposta)
